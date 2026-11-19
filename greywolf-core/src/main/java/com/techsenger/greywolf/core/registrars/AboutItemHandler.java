@@ -41,8 +41,7 @@ public class AboutItemHandler extends AbstractGreyWolfHandler<ActionEvent> {
         var greyWolf = getGreyWolf();
         var config = greyWolf.getConfigManager().getOrCreateConfig(AboutDialogConfig.class,
                 AboutDialogConfig::new);
-        var params = new AboutDialogParams(config, greyWolf.getSettings(),
-                url -> greyWolf.getHostServices().showDocument(url));
+        var params = new AboutDialogParams(config, greyWolf.getSettings(), greyWolf.getHostServices());
         var viewModel = new AboutDialogViewModel<>(params);
         var view = new AboutDialogView(viewModel, greyWolf.getStylesheetRegistry());
         view.initialize();

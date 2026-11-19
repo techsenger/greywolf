@@ -23,6 +23,7 @@ import com.techsenger.shellfx.core.close.ClosePreparationResult;
 import com.techsenger.shellfx.core.dialog.AbstractDialogViewModel;
 import com.techsenger.shellfx.core.window.WindowComposer;
 import java.util.function.Consumer;
+import javafx.application.HostServices;
 
 /**
  *
@@ -34,13 +35,13 @@ public final class AboutDialogViewModel<C extends WindowComposer> extends Abstra
 
     private static final String DONATE_URL = "https://github.com/sponsors/techsenger";
 
-    private final Consumer<String> urlOpener;
+    private final HostServices hostServices;
 
     private final String version;
 
     public AboutDialogViewModel(AboutDialogParams params) {
         super(params);
-        this.urlOpener = params.getUrlOpener();
+        this.hostServices = params.getHostServices();
         var projectVersion = ProjectInfo.getVersion();
         this.version = projectVersion.toString();
     }
@@ -64,15 +65,6 @@ public final class AboutDialogViewModel<C extends WindowComposer> extends Abstra
         return version;
     }
 
-    /**
-     * Opens the address in the browser of the user.
-     *
-     * @param url the address to open
-     */
-    public void openUrl(String url) {
-        urlOpener.accept(url);
-    }
-
     @Override
     protected void postInitialize() {
         super.postInitialize();
@@ -83,10 +75,19 @@ public final class AboutDialogViewModel<C extends WindowComposer> extends Abstra
         setRightButtons(AboutDialogButtons.DONATE);
         setOnResult(name -> {
             if (name == AboutDialogButtons.CONTRIBUTE) {
-                openUrl(CONTRIBUTE_URL);
+                onOpenUrl(CONTRIBUTE_URL);
             } else if (name == AboutDialogButtons.DONATE) {
-                openUrl(DONATE_URL);
+                onOpenUrl(DONATE_URL);
             }
         });
+    }
+
+    /**
+     * Opens the address in the browser of the user.
+     *
+     * @param url the address to open
+     */
+    void onOpenUrl(String url) {
+        hostServices.showDocument(url);
     }
 }

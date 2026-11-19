@@ -95,7 +95,7 @@ public final class AboutDialogView extends AbstractDialogView<AboutDialogViewMod
         copyrightText.getStyleClass().add("about-dialog-text");
         periodText.getStyleClass().add("about-dialog-text");
         siteLink.getStyleClass().add("about-dialog-link");
-        siteLink.setOnAction(e -> getViewModel().openUrl(SITE_URL));
+        siteLink.setOnAction(e -> getViewModel().onOpenUrl(SITE_URL));
         // Without the preferred minimum height wrapped text is cut off with an ellipsis.
         copyrightFlow.setMinHeight(Region.USE_PREF_SIZE);
         licenseLabel.setWrapText(true);
