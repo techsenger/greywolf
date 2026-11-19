@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-GreyWolf is an integrated file management environment (JavaFX, Java 25) built as a plugin-based,
+GreyWolf is an integrated file management environment (JavaFX, Java 27) built as a plugin-based,
 modular application on top of two sibling Techsenger frameworks that the same author maintains:
 
 - **patternfx** (`com.techsenger.patternfx.*`) — provides the component-tree building blocks GreyWolf is
