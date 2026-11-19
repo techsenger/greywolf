@@ -31,8 +31,9 @@ jobs:
         java-version: '27'
         distribution: 'temurin'
         cache: 'maven'
+    # install (not verify) also assembles the distribution, so its build is checked on every OS.
     - name: Build and test
-      run: mvn -B -U verify
+      run: mvn -B -U install
 
   # Publishes the snapshot artifacts of the plugins to Repsy, where the application downloads them on its first start,
   # and the distribution archive to the snapshot release. The Repsy credentials are given only to the Maven step and
