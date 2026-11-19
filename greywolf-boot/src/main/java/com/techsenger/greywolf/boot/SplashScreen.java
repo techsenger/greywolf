@@ -62,7 +62,7 @@ final class SplashScreen {
 
     private static final Color BAR_BG = new Color(0x2C2C2E);
 
-    private static final Color BAR_FG = new Color(0x0055B3);
+    private static final Color BAR_FG = new Color(0x0a84ff);
 
     private static Font loadFont(Inter inter, float size) throws IOException, FontFormatException {
         try (var stream = inter.getUrl().openStream()) {
