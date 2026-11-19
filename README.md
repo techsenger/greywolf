@@ -42,6 +42,9 @@ assembles compatible component versions according to their declared requirements
 
 ## Table of Contents
 * [Demo](#demo)
+    * [Navigator](#demo-navigator)
+    * [Terminal](#demo-terminal)
+    * [Dual Panels](#demo-dual-panels)
 * [Features](#features)
 * [Dual Panels](#dual-panels)
 * [Plugins](#plugins)
@@ -56,6 +59,18 @@ assembles compatible component versions according to their declared requirements
 * [License](#license)
 * [Contributing](#contributing)
 * [Support Us](#support-us)
+
+## Demo <a name="demo"></a>
+
+### Navigator <a name="demo-navigator"></a>
+<p><img width="1200" height="800" alt="GreyWolf Navigator" src="https://github.com/user-attachments/assets/2b2fc9bb-4f19-459a-b938-4081fee19f90" /></p>
+
+### Terminal <a name="demo-terminal"></a>
+<p><img width="1200" height="800" alt="GreyWolf Terminal" src="https://github.com/user-attachments/assets/33788f8d-bb20-417d-acf3-5883d14e01fa" /></p>
+
+### Dual Panels <a name="demo-dual-panels"></a>
+<p><img width="1200" height="800" alt="GreyWolf Dual Panels" src="https://github.com/user-attachments/assets/94230ebd-b593-4ff9-b9e3-556099971dc7" /></p>
+<p><img width="1200" height="800" alt="GreyWolf Dual Panels" src="https://github.com/user-attachments/assets/95ce29c8-19f0-45fa-a603-03951c4f245e" /></p>
 
 ## Features <a name="features"></a>
 
