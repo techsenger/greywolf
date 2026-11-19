@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration name="greywolf-devtools-weaverbird" version="${project.version}" type="plugin">
+    <Metadata>
+        <Entry key="category" value="DEVTOOLS"/>
+        <Entry key="pricing" value="FREE"/>
+        <Entry key="vendor" value="Techsenger"/>
+        <Entry key="license" value="Apache License 2.0"/>
+        <Entry key="homepage" value="https://github.com/techsenger/greywolf"/>
+        <Entry key="name.en" value="Weaverbird DevTools"/>
+        <Entry key="description.en" value="The plugin includes two key tools for working with the Weaverbird Framework — a console for executing text commands and diagrams for analyzing components, layers, modules, and their properties."/>
+    </Metadata>
+
+    <Repositories>
+        <Repository name="local" url="${sys['com.techsenger.weaverbird.repo.local']}"/>
+        <Repository name="central" url="https://repo1.maven.org/maven2/"/>
+        <Repository name="snapshots" url="https://repo.repsy.io/mvn/techsenger/snapshots/"/>
+    </Repositories>
+
+    <Parents>
+        <Parent name="greywolf-core" version="${project.version}" versionMatch="patch"/>
+    </Parents>
+
+    <Modules>
+        <!--### ASCII TABLE ###-->
+        <Module groupId="de.vandermeer" artifactId="asciitable" version="${bom.asciitable.version}"/>
+        <Module groupId="de.vandermeer" artifactId="skb-interfaces" version="${bom.skb-interfaces.version}"/>
+        <Module groupId="de.vandermeer" artifactId="ascii-utf-themes" version="${bom.ascii.themes.version}"/>
+        <Module groupId="org.antlr" artifactId="ST4" version="${bom.st4.version}"/>
+        <Module groupId="org.apache.commons" artifactId="commons-lang3" version="${bom.commons.lang.version}"/>
+
+        <!--### TOOLS ###-->
+        <Module groupId="com.techsenger.toolkit" artifactId="toolkit-ascii" version="${bom.toolkit.version}"/>
+        <Module groupId="com.techsenger.toolkit" artifactId="toolkit-http" version="${bom.toolkit.version}"/>
+        <Module groupId="com.beust" artifactId="jcommander" version="${bom.jcommander.version}"/>
+        <Module groupId="com.google.code.gson" artifactId="gson" version="${bom.gson.version}">
+            <!--
+                Gson requires reflective access to java.time classes for serialization/deserialization.
+                Since java.base is in the boot layer and JPMS does not provide access to the boot layer
+                controller, we use a relay approach: java.base opens java.time to the framework core module
+                via the add-opens at JVM startup, and the core module relays the access to Gson using
+                Module.addOpens().
+            -->
+            <Directives>
+                <Directive type="requestsOpen" layer="weaverbird-framework:${project.version}" module="java.base" package="java.time"/>
+            </Directives>
+        </Module>
+
+        <!--### UML ###-->
+        <Module groupId="net.sourceforge.plantuml" artifactId="plantuml-asl" version="${bom.plantuml.version}"/>
+
+        <!--<Module groupId="org.eclipse.elk" artifactId="org.eclipse.elk.core" version="0.9.1"/>
+        <Module groupId="org.eclipse.elk" artifactId="org.eclipse.elk.graph" version="0.9.1"/>
+        <Module groupId="org.eclipse.elk" artifactId="org.eclipse.elk.alg.common" version="0.9.1"/>
+        <Module groupId="org.eclipse.elk" artifactId="org.eclipse.elk.alg.layered" version="0.9.1"/>
+        <Module groupId="org.eclipse.elk" artifactId="org.eclipse.elk.alg.mrtree" version="0.9.1"/>
+        <Module groupId="org.eclipse.emf" artifactId="org.eclipse.emf.ecore" version="2.12.0"/>
+        <Module groupId="org.eclipse.emf" artifactId="org.eclipse.emf.common" version="2.12.0"/>
+        <Module groupId="org.eclipse.emf" artifactId="org.eclipse.emf.ecore.xmi" version="2.12.0"/>
+        <Module groupId="com.google.guava" artifactId="guava" version="33.4.0-jre"/> <! - - version [15.0,) - - >
+        <Module groupId="com.google.guava" artifactId="failureaccess" version="1.0.2"/>
+        <Module groupId="com.google.errorprone" artifactId="error_prone_annotations" version="2.36.0"/>
+        <Module groupId="com.google.j2objc" artifactId="j2objc-annotations" version="3.0.0"/>
+        <Module groupId="org.checkerframework" artifactId="checker-qual" version="3.43.0"/>-->
+
+        <!--### WEAVERBIRD ###-->
+        <Module groupId="com.techsenger.weaverbird.net" artifactId="weaverbird-net-shared" version="${project.version}"/>
+        <Module groupId="com.techsenger.weaverbird.net" artifactId="weaverbird-net-client" version="${project.version}"/>
+        <Module groupId="com.techsenger.weaverbird" artifactId="weaverbird-executor" version="${project.version}"/>
+        <Module groupId="com.techsenger.weaverbird" artifactId="weaverbird-gui" version="${project.version}"/>
+        <Module groupId="com.techsenger.greywolf.devtools" artifactId="greywolf-devtools-weaverbird" version="${project.version}" active="true"/>
+    </Modules>
+</Configuration>

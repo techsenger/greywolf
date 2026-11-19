@@ -1,0 +1,101 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+# Every job states its own permissions; this is only the safe default for jobs added later.
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # macos-latest is arm64
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    permissions:
+      contents: read
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+    - name: Setup Java 27
+      uses: actions/setup-java@v4
+      with:
+        java-version: '27'
+        distribution: 'temurin'
+        cache: 'maven'
+    - name: Build and test
+      run: mvn -B -U verify
+
+  # Publishes the snapshot artifacts of the plugins to Repsy, where the application downloads them on its first start,
+  # and the distribution archive to the snapshot release. The Repsy credentials are given only to the Maven step and
+  # the repository token only to the last step, so neither is visible to the other steps.
+  publish:
+    name: Publish snapshot
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    # Keep the secrets in this environment and restrict its deployment branches to main in the repository settings.
+    environment: repsy
+    permissions:
+      contents: write
+    concurrency:
+      group: snapshot-publish
+      cancel-in-progress: false
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+    # Generates settings.xml that refers to the credentials by environment variables, so no secret is written to disk.
+    - name: Setup Java 27
+      uses: actions/setup-java@v4
+      with:
+        java-version: '27'
+        distribution: 'temurin'
+        cache: 'maven'
+        server-id: repsy-snapshots
+        server-username: REPSY_USERNAME
+        server-password: REPSY_PASSWORD
+    - name: Check the version
+      id: version
+      run: |
+        VERSION=$(mvn -B -q help:evaluate -Dexpression=project.version -DforceStdout)
+        echo "Detected version: $VERSION"
+        if [[ "$VERSION" == *SNAPSHOT ]]; then
+          echo "snapshot=true" >> "$GITHUB_OUTPUT"
+          echo "ARCHIVE=greywolf-$VERSION.zip" >> "$GITHUB_ENV"
+        else
+          echo "Skipping publishing of release version: $VERSION"
+        fi
+    # The dist module is not deployed (maven.deploy.skip in its POM); it only assembles the distribution.
+    - name: Deploy and build distribution
+      if: steps.version.outputs.snapshot == 'true'
+      env:
+        REPSY_USERNAME: ${{ secrets.REPSY_USERNAME }}
+        REPSY_PASSWORD: ${{ secrets.REPSY_PASSWORD }}
+      run: mvn -B -U clean deploy -DskipTests -Pportable
+    - name: Pack distribution
+      if: steps.version.outputs.snapshot == 'true'
+      run: |
+        cd greywolf-dist/target
+        zip -r -y -q "../../$ARCHIVE" "${ARCHIVE%.zip}"
+    # The snapshot release is recreated on every push, so its download link always points to the latest build.
+    - name: Publish snapshot release
+      if: steps.version.outputs.snapshot == 'true'
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_REPO: ${{ github.repository }}
+      run: |
+        gh release delete snapshot --cleanup-tag --yes || true
+        gh release create snapshot "$ARCHIVE" \
+          --target "$GITHUB_SHA" \
+          --prerelease \
+          --title "Snapshot" \
+          --notes "Automated snapshot build of commit $GITHUB_SHA. Unpack the archive and run bin/greywolf.sh (Linux, macOS) or bin/greywolf.bat (Windows). Requires Java 27."

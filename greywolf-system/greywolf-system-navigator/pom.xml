@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.techsenger.greywolf.system</groupId>
+        <artifactId>greywolf-system</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.techsenger.greywolf.system</groupId>
+    <artifactId>greywolf-system-navigator</artifactId>
+    <packaging>jar</packaging>
+    <name>GreyWolf - System Navigator</name>
+    <description>Dual-panel navigator plugin</description>
+
+    <properties>
+        <dist.install.phase>install</dist.install.phase>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.mkpaz</groupId>
+            <artifactId>atlantafx-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.weaverbird</groupId>
+            <artifactId>weaverbird-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.annotations</groupId>
+            <artifactId>annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.tabpanepro</groupId>
+            <artifactId>tabpanepro-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.errorprone</groupId>
+            <artifactId>error_prone_annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.toolkit</groupId>
+            <artifactId>toolkit-fx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.patternfx</groupId>
+            <artifactId>patternfx-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.patternfx</groupId>
+            <artifactId>patternfx-mvp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-material</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx.storage</groupId>
+            <artifactId>shellfx-storage-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx.storage</groupId>
+            <artifactId>shellfx-storage-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-shared</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-layout</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-dialogs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf</groupId>
+            <artifactId>greywolf-shared</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf</groupId>
+            <artifactId>greywolf-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.storage</groupId>
+            <artifactId>greywolf-storage-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.storage</groupId>
+            <artifactId>greywolf-storage-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>dev.dirs</groupId>
+            <artifactId>directories</artifactId>
+        </dependency>
+    </dependencies>
+</project>
+
+
+
+
+
+

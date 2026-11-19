@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    The structure of the archive mirrors the structure of the Weaverbird framework: every file is placed in
+    <directory>/<name>/<version>/, and the modules of the component are placed in the repository (repo) at the
+    paths that they have there. The component's modules are listed in the configuration, so the jar of the plugin
+    is declared there too. The component has its own name (plugin.name), which differs from the name of the module.
+-->
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd">
+    <id>plugin</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <files>
+        <file>
+            <source>assembly/configuration.xml</source>
+            <outputDirectory>config/${plugin.name}/${project.version}</outputDirectory>
+            <destName>configuration.xml</destName>
+            <filtered>true</filtered>
+        </file>
+        <file>
+            <source>../../LICENSE.txt</source>
+            <outputDirectory>legal/${plugin.name}/${project.version}</outputDirectory>
+        </file>
+        <file>
+            <source>${project.build.directory}/${project.build.finalName}.jar</source>
+            <outputDirectory>repo/com/techsenger/greywolf/samples/${project.artifactId}/${project.version}</outputDirectory>
+        </file>
+    </files>
+</assembly>

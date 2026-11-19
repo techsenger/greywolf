@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- AUTO-GENERATED FILE — DO NOT EDIT -->
+<Registry>
+    <AddedComponents>
+        <Component name="weaverbird-repo" version="${bom.weaverbird.version}"/>
+        <Component name="greywolf-core" version="${project.version}"/>
+        <Component name="greywolf-system-navigator" version="${project.version}"/>
+        <Component name="greywolf-system-terminal" version="${project.version}"/>
+        <Component name="greywolf-devtools-weaverbird" version="${project.version}"/>
+        <Component name="greywolf-devtools-shellfx" version="${project.version}"/>
+        <Component name="greywolf-devtools-base" version="${project.version}"/>
+    </AddedComponents>
+    <ResolvedComponents>
+        <Component name="weaverbird-repo" version="${bom.weaverbird.version}"/>
+    </ResolvedComponents>
+</Registry>

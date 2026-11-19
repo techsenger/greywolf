@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.techsenger.greywolf</groupId>
+        <artifactId>greywolf</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.techsenger.greywolf</groupId>
+    <artifactId>greywolf-dist</artifactId>
+    <packaging>jar</packaging>
+    <name>GreyWolf - Dist</name>
+    <description></description>
+
+    <properties>
+        <dist.install.phase>none</dist.install.phase>
+        <!-- The distribution is published as an archive, not as a Maven artifact. -->
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.techsenger.greywolf</groupId>
+            <artifactId>greywolf-boot</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf</groupId>
+            <artifactId>greywolf-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.storage</groupId>
+            <artifactId>greywolf-storage-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.storage</groupId>
+            <artifactId>greywolf-storage-system</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.storage</groupId>
+            <artifactId>greywolf-storage-recent</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.storage</groupId>
+            <artifactId>greywolf-storage-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf</groupId>
+            <artifactId>greywolf-shared</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.system</groupId>
+            <artifactId>greywolf-system-navigator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.devtools</groupId>
+            <artifactId>greywolf-devtools-shellfx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.devtools</groupId>
+            <artifactId>greywolf-devtools-weaverbird</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.devtools</groupId>
+            <artifactId>greywolf-devtools-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.system</groupId>
+            <artifactId>greywolf-system-terminal</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.techsenger.weaverbird.assembly</groupId>
+                <artifactId>weaverbird-assembly-maven-plugin</artifactId>
+                <version>${weaverbird.version}</version>
+                <executions>
+                    <execution>
+                        <id>assemble</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>assemble-dist</goal>
+                        </goals>
+                        <configuration>
+                            <path>${project.build.directory}/greywolf-${project.version}</path>
+                            <mainClass>com.techsenger.greywolf.boot/com.techsenger.greywolf.boot.Boot</mainClass>
+                            <scriptName>greywolf</scriptName>
+                            <jvmArgs>
+                                <jvmArg>-agentlib:jdwp=transport=dt_socket,address=7700,server=y,suspend=n</jvmArg>
+                                <jvmArg>-Djavafx.enablePreview=true</jvmArg>
+                                <jvmArg>-Dcom.techsenger.weaverbird.repo.local=file://${settings.localRepository}</jvmArg>
+                            </jvmArgs>
+                            <components>
+                                <component>weaverbird-repo</component>
+                            </components>
+                            <modules>
+                                <module>
+                                    <groupId>com.techsenger.greywolf</groupId>
+                                    <artifactId>greywolf-boot</artifactId>
+                                    <version>${project.version}</version>
+                                    <onModulePath>true</onModulePath>
+                                </module>
+                                <!-- The splash screen of the boot module uses it. -->
+                                <module>
+                                    <groupId>com.techsenger.fontjars</groupId>
+                                    <artifactId>fontjars-inter</artifactId>
+                                    <version>${bom.fontjars.version}</version>
+                                    <onModulePath>true</onModulePath>
+                                </module>
+                            </modules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${assembly.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>make-dist</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>greywolf-${project.version}</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>assembly/dist.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!--
+            The distribution for end users: its launch script has neither the path to the local Maven repository of
+            the build machine nor the debug agent, which the default (developer) distribution has.
+        -->
+        <profile>
+            <id>portable</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.techsenger.weaverbird.assembly</groupId>
+                        <artifactId>weaverbird-assembly-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>assemble</id>
+                                <configuration>
+                                    <jvmArgs combine.self="override">
+                                        <jvmArg>-Djavafx.enablePreview=true</jvmArg>
+                                    </jvmArgs>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
+
+
+
+
+
+

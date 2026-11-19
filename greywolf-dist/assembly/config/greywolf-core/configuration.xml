@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration name="greywolf-core" version="${project.version}">
+    <Repositories>
+        <Repository name="local" url="${sys['com.techsenger.weaverbird.repo.local']}"/>
+        <Repository name="central" url="https://repo1.maven.org/maven2/"/>
+        <Repository name="snapshots" url="https://repo.repsy.io/mvn/techsenger/snapshots/"/>
+    </Repositories>
+
+    <Modules>
+        <!--### JAVAFX ###-->
+        <Module groupId="org.openjfx" artifactId="javafx-base" classifier="${info['javafx.classifier']}" version="${javafx.version}"/>
+        <Module groupId="org.openjfx" artifactId="javafx-controls" classifier="${info['javafx.classifier']}" version="${javafx.version}"/>
+        <Module groupId="org.openjfx" artifactId="javafx-graphics" classifier="${info['javafx.classifier']}" version="${javafx.version}" nativeAccessEnabled="true"/>
+        <Module groupId="org.openjfx" artifactId="javafx-swing" classifier="${info['javafx.classifier']}" version="${javafx.version}"/>
+        <Module groupId="org.openjfx" artifactId="jfx-incubator-richtext" classifier="${info['javafx.classifier']}" version="${javafx.version}"/>
+        <Module groupId="org.openjfx" artifactId="jfx-incubator-input" classifier="${info['javafx.classifier']}" version="${javafx.version}"/>
+
+        <!--### TOOLS ###-->
+        <Module groupId="com.techsenger.annotations" artifactId="annotations" version="${bom.annotations.version}"/>
+        <Module groupId="com.techsenger.toolkit" artifactId="toolkit-fx" version="${bom.toolkit.version}"/>
+        <Module groupId="com.techsenger.drivekit" artifactId="drivekit-core" version="${bom.drivekit.version}"/>
+        <Module groupId="org.apache.tika" artifactId="tika-core" version="${bom.tika.version}"/>
+        <Module groupId="commons-io" artifactId="commons-io" version="${bom.commons.io.version}"/>
+        <Module groupId="org.yaml" artifactId="snakeyaml" version="${bom.snakeyaml.version}"/>
+        <Module groupId="dev.dirs" artifactId="directories" version="${bom.dirs.version}"/>
+
+        <!--### FONTS ###-->
+        <!-- Inter is not here: the boot layer needs it for the splash screen, the core reads it from there. -->
+        <Module groupId="com.techsenger.fontjars" artifactId="fontjars-jetbrains-mono" version="${bom.fontjars.version}"/>
+        <Module groupId="com.techsenger.fontjars" artifactId="fontjars-mdi" version="${bom.fontjars.version}"/>
+        <Module groupId="com.techsenger.fontjars" artifactId="fontjars-techsenger-icons" version="${bom.fontjars.version}"/>
+
+        <!--### PATTERNFX ###-->
+        <Module groupId="com.google.errorprone" artifactId="error_prone_annotations" version="${bom.errorprone.version}"/>
+        <Module groupId="com.techsenger.patternfx" artifactId="patternfx-core" version="${bom.patternfx.version}"/>
+        <Module groupId="com.techsenger.patternfx" artifactId="patternfx-mvvm" version="${bom.patternfx.version}"/>
+
+        <!--### SHELLFX ###-->
+        <Module groupId="com.helger" artifactId="ph-css" version="${bom.ph.css.version}"/>
+        <Module groupId="com.helger.commons" artifactId="ph-commons" version="${bom.ph.commons.version}"/>
+        <Module groupId="io.github.mkpaz" artifactId="atlantafx-base" version="${bom.atlantafx.version}"/>
+        <Module groupId="net.java.dev.jna" artifactId="jna" version="${bom.jna.version}"/>
+        <Module groupId="net.java.dev.jna" artifactId="jna-platform" version="${bom.jna.version}"/>
+        <Module groupId="com.techsenger.tabpanepro" artifactId="tabpanepro-core" version="${bom.tabpanepro.version}"/>
+        <Module groupId="com.techsenger.shellfx" artifactId="shellfx-base" version="${bom.shellfx.version}"/>
+        <Module groupId="com.techsenger.shellfx" artifactId="shellfx-icons" version="${bom.shellfx.version}"/>
+        <Module groupId="com.techsenger.shellfx" artifactId="shellfx-material" version="${bom.shellfx.version}"/>
+        <Module groupId="com.techsenger.shellfx" artifactId="shellfx-core" version="${bom.shellfx.version}"/>
+        <Module groupId="com.techsenger.shellfx" artifactId="shellfx-shared" version="${bom.shellfx.version}"/>
+        <Module groupId="com.techsenger.shellfx" artifactId="shellfx-dialogs" version="${bom.shellfx.version}"/>
+        <Module groupId="com.techsenger.shellfx" artifactId="shellfx-layout" version="${bom.shellfx.version}"/>
+        <Module groupId="com.techsenger.shellfx.storage" artifactId="shellfx-storage-base" version="${bom.shellfx.version}"/>
+        <Module groupId="com.techsenger.shellfx.storage" artifactId="shellfx-storage-system" version="${bom.shellfx.version}"/>
+        <Module groupId="com.techsenger.shellfx.storage" artifactId="shellfx-storage-ui" version="${bom.shellfx.version}"/>
+
+        <!--### GREYWOLF ###-->
+        <Module groupId="com.techsenger.greywolf.storage" artifactId="greywolf-storage-base" version="${project.version}"/>
+        <Module groupId="com.techsenger.greywolf.storage" artifactId="greywolf-storage-system" version="${project.version}"/>
+        <Module groupId="com.techsenger.greywolf.storage" artifactId="greywolf-storage-recent" version="${project.version}" active="true"/>
+        <Module groupId="com.techsenger.greywolf.storage" artifactId="greywolf-storage-ui" version="${project.version}"/>
+        <Module groupId="com.techsenger.greywolf" artifactId="greywolf-core" version="${project.version}" active="true"/>
+        <Module groupId="com.techsenger.greywolf" artifactId="greywolf-shared" version="${project.version}" active="true"/>
+    </Modules>
+</Configuration>

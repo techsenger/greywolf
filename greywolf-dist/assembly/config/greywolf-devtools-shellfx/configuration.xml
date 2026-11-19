@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration name="greywolf-devtools-shellfx" version="${project.version}" type="plugin">
+    <Metadata>
+        <Entry key="category" value="DEVTOOLS"/>
+        <Entry key="pricing" value="FREE"/>
+        <Entry key="vendor" value="Techsenger"/>
+        <Entry key="license" value="Apache License 2.0"/>
+        <Entry key="homepage" value="https://github.com/techsenger/greywolf"/>
+        <Entry key="name.en" value="ShellFX DevTools"/>
+        <Entry key="description.en" value="DevTools for inspecting and analyzing the application at two levels: the component tree and the JavaFX scene graph."/>
+    </Metadata>
+
+    <Repositories>
+        <Repository name="local" url="${sys['com.techsenger.weaverbird.repo.local']}"/>
+        <Repository name="central" url="https://repo1.maven.org/maven2/"/>
+        <Repository name="snapshots" url="https://repo.repsy.io/mvn/techsenger/snapshots/"/>
+    </Repositories>
+
+    <Parents>
+        <Parent name="greywolf-core" version="${project.version}" versionMatch="patch"/>
+    </Parents>
+
+    <Modules>
+        <Module groupId="com.techsenger.connectorfx" artifactId="connectorfx" version="${bom.connectorfx.version}"/>
+        <Module groupId="com.techsenger.shellfx" artifactId="shellfx-devtools" version="${bom.shellfx.version}">
+            <Directives>
+                <Directive type="requestsOpen" layer="greywolf-core:${project.version}" module="com.techsenger.shellfx.core" package="com.techsenger.shellfx.core.area"/>
+                <Directive type="requestsOpen" layer="greywolf-core:${project.version}" module="com.techsenger.shellfx.core" package="com.techsenger.shellfx.core.tab"/>
+                <Directive type="requestsOpen" layer="greywolf-core:${project.version}" module="com.techsenger.shellfx.core" package="com.techsenger.shellfx.core.window"/>
+            </Directives>
+        </Module>
+        <Module groupId="com.techsenger.greywolf.devtools" artifactId="greywolf-devtools-shellfx" version="${project.version}" active="true"/>
+    </Modules>
+</Configuration>

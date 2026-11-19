@@ -1,0 +1,74 @@
+/*
+ * Copyright 2026 Pavel Castornii.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+/*
+    Author     : Pavel Castornii
+*/
+.button.workspace-new-button {
+    -fx-border-color: -color-border-subtle;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+}
+
+/*
+    The visible height of the tabs is 1.2 times bigger than the one of SlantedTabPanePro (see
+    slanted-tab-pane-pro.css in shellfx). The height of the label is the visible height plus the part clipped above
+    the tab (-sfx-top-offset, 0.36em), which is not scaled: (old - 0.36em) * 1.2 + 0.36em. The rules repeat the
+    selectors of the sizes and the densities of shellfx and add one more class to be more specific than they are.
+*/
+.tab-pane-pro.slanted.workspace-tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-pref-height: 2.7em;
+}
+
+/***** density-xs *****/
+.density-xs .tab-pane-pro.slanted.workspace-tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-pref-height: 2.7em;
+}
+
+/***** density-s *****/
+.density-s .tab-pane-pro.slanted.workspace-tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-pref-height: 2.82em;
+}
+
+/*
+    The icons of the tabs are 1.05 times bigger than the ones of SlantedTabPanePro (the height of the tabs is scaled
+    by another factor, see above). The selectors are the same as above. A rule has the properties of both kinds of
+    icons: a font icon reads -sfx-icon-size and an image icon reads -fx-fit-*, the other properties do not apply to
+    it.
+*/
+.tab-pane-pro.slanted.workspace-tab-pane > .tab-header-area > .headers-region > .tab .font-icon-view,
+.tab-pane-pro.slanted.workspace-tab-pane > .tab-header-area > .headers-region > .tab .image-icon-view {
+    -sfx-icon-size: 1.53em;
+    -fx-fit-width: 1.53em;
+    -fx-fit-height: 1.53em;
+}
+
+/***** density-xs *****/
+.density-xs .tab-pane-pro.slanted.workspace-tab-pane > .tab-header-area > .headers-region > .tab .font-icon-view,
+.density-xs .tab-pane-pro.slanted.workspace-tab-pane > .tab-header-area > .headers-region > .tab .image-icon-view {
+    -sfx-icon-size: 1.53em;
+    -fx-fit-width: 1.53em;
+    -fx-fit-height: 1.53em;
+}
+
+/***** density-s *****/
+.density-s .tab-pane-pro.slanted.workspace-tab-pane > .tab-header-area > .headers-region > .tab .font-icon-view,
+.density-s .tab-pane-pro.slanted.workspace-tab-pane > .tab-header-area > .headers-region > .tab .image-icon-view {
+    -sfx-icon-size: 1.62em;
+    -fx-fit-width: 1.62em;
+    -fx-fit-height: 1.62em;
+}

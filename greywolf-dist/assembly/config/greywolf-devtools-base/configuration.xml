@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration name="greywolf-devtools-base" version="${project.version}" type="plugin">
+    <Metadata>
+        <Entry key="category" value="DEVTOOLS"/>
+        <Entry key="pricing" value="FREE"/>
+        <Entry key="vendor" value="Techsenger"/>
+        <Entry key="license" value="Apache License 2.0"/>
+        <Entry key="homepage" value="https://github.com/techsenger/greywolf"/>
+        <Entry key="name.en" value="Base DevTools"/>
+        <Entry key="description.en" value="Opens other plugins' dialogs directly with dummy data, outside their normal triggers, for styling/layout work."/>
+    </Metadata>
+
+    <Repositories>
+        <Repository name="local" url="${sys['com.techsenger.weaverbird.repo.local']}"/>
+        <Repository name="central" url="https://repo1.maven.org/maven2/"/>
+        <Repository name="snapshots" url="https://repo.repsy.io/mvn/techsenger/snapshots/"/>
+    </Repositories>
+
+    <Parents>
+        <Parent name="greywolf-core" version="${project.version}" versionMatch="patch"/>
+        <Parent name="greywolf-system-navigator" version="${project.version}" versionMatch="patch" optional="true"/>
+    </Parents>
+
+    <Modules>
+        <Module groupId="com.techsenger.greywolf.devtools" artifactId="greywolf-devtools-base" version="${project.version}" active="true"/>
+    </Modules>
+</Configuration>

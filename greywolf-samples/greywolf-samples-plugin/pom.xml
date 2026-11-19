@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.techsenger.greywolf.samples</groupId>
+        <artifactId>greywolf-samples</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.techsenger.greywolf.samples</groupId>
+    <artifactId>greywolf-samples-plugin</artifactId>
+    <packaging>jar</packaging>
+    <name>GreyWolf - Sample Plugin</name>
+    <description>Sample plugin that adds a button to the Navigator tool bar</description>
+
+    <properties>
+        <!-- The name of the Weaverbird component and of its archive; the artifact id is the name of the module. -->
+        <plugin.name>samples-plugin</plugin.name>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.techsenger.annotations</groupId>
+            <artifactId>annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.weaverbird</groupId>
+            <artifactId>weaverbird-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf</groupId>
+            <artifactId>greywolf-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.storage</groupId>
+            <artifactId>greywolf-storage-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.storage</groupId>
+            <artifactId>greywolf-storage-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.system</groupId>
+            <artifactId>greywolf-system-navigator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.patternfx</groupId>
+            <artifactId>patternfx-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.patternfx</groupId>
+            <artifactId>patternfx-mvvm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-dialogs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-material</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx.storage</groupId>
+            <artifactId>shellfx-storage-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.errorprone</groupId>
+            <artifactId>error_prone_annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.mkpaz</groupId>
+            <artifactId>atlantafx-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Builds the zip archive of the plugin, which is added to GreyWolf in the Plugins dialog. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${assembly.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>component-archive</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>${plugin.name}-${project.version}</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <attach>false</attach>
+                            <descriptors>
+                                <descriptor>assembly/plugin.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

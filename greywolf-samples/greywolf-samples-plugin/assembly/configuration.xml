@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration name="${plugin.name}" version="${project.version}" type="plugin">
+    <Metadata>
+        <Entry key="pricing" value="FREE"/>
+        <Entry key="vendor" value="Techsenger"/>
+        <Entry key="license" value="Apache License 2.0"/>
+        <Entry key="homepage" value="https://github.com/techsenger/greywolf"/>
+        <Entry key="name.en" value="Sample Plugin"/>
+        <Entry key="description.en" value="Sample plugin that adds a button to the Navigator tool bar. The button shows the name of the current file."/>
+    </Metadata>
+
+    <Repositories>
+        <Repository name="central" url="https://repo1.maven.org/maven2/"/>
+    </Repositories>
+
+    <Parents>
+        <Parent name="greywolf-system-navigator" version="${project.version}" versionMatch="patch"/>
+    </Parents>
+
+    <Modules>
+        <Module groupId="${project.groupId}" artifactId="${project.artifactId}" version="${project.version}" active="true"/>
+    </Modules>
+</Configuration>

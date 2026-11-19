@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration name="greywolf-system-terminal" version="${project.version}" type="plugin">
+    <Metadata>
+        <Entry key="category" value="SYSTEM"/>
+        <Entry key="pricing" value="FREE"/>
+        <Entry key="vendor" value="Techsenger"/>
+        <Entry key="license" value="Apache License 2.0"/>
+        <Entry key="homepage" value="https://github.com/techsenger/greywolf"/>
+        <Entry key="name.en" value="Terminal"/>
+        <Entry key="description.en" value="Terminal plugin for GreyWolf based on JediTermFX. Provides an embedded cross-platform terminal with support for Bash, CMD, PowerShell, and other system shells. Allows users to execute commands and interact with the operating system directly inside GreyWolf."/>
+    </Metadata>
+
+    <Repositories>
+        <Repository name="local" url="${sys['com.techsenger.weaverbird.repo.local']}"/>
+        <Repository name="central" url="https://repo1.maven.org/maven2/"/>
+        <Repository name="snapshots" url="https://repo.repsy.io/mvn/techsenger/snapshots/"/>
+        <Repository name="JetBrains" url="https://packages.jetbrains.team/maven/p/ij/intellij-dependencies"/>
+    </Repositories>
+
+    <Parents>
+        <Parent name="greywolf-core" version="${project.version}" versionMatch="patch"/>
+    </Parents>
+
+    <Modules>
+        <Module groupId="com.techsenger.jeditermfx" artifactId="jeditermfx-core" version="${bom.jeditermfx.version}" />
+        <Module groupId="com.techsenger.jeditermfx" artifactId="jeditermfx-ui" version="${bom.jeditermfx.version}" />
+        <Module groupId="org.jetbrains.pty4j" artifactId="pty4j" version="0.12.25" />
+        <Module groupId="org.jetbrains.pty4j" artifactId="purejavacomm" version="0.0.11.1" />
+        <Module groupId="org.jetbrains.kotlin" artifactId="kotlin-stdlib" version="1.9.22" />
+        <Module groupId="org.jetbrains" artifactId="annotations" version="24.0.1" />
+        <Module groupId="com.techsenger.greywolf.system" artifactId="greywolf-system-terminal" version="${project.version}" active="true"/>
+    </Modules>
+</Configuration>

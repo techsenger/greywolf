@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.techsenger.greywolf.storage</groupId>
+        <artifactId>greywolf-storage</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.techsenger.greywolf.storage</groupId>
+    <artifactId>greywolf-storage-ui</artifactId>
+    <packaging>jar</packaging>
+    <name>GreyWolf - Storage UI</name>
+    <description>Views, slots, icons and styles that show the files of GreyWolf storages</description>
+
+    <properties>
+        <dist.install.phase>install</dist.install.phase>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.techsenger.annotations</groupId>
+            <artifactId>annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.toolkit</groupId>
+            <artifactId>toolkit-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.toolkit</groupId>
+            <artifactId>toolkit-fx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.patternfx</groupId>
+            <artifactId>patternfx-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.patternfx</groupId>
+            <artifactId>patternfx-mvvm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-dialogs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-material</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx</groupId>
+            <artifactId>shellfx-shared</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx.storage</groupId>
+            <artifactId>shellfx-storage-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.shellfx.storage</groupId>
+            <artifactId>shellfx-storage-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.techsenger.greywolf.storage</groupId>
+            <artifactId>greywolf-storage-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.mkpaz</groupId>
+            <artifactId>atlantafx-base</artifactId>
+        </dependency>
+    </dependencies>
+</project>
