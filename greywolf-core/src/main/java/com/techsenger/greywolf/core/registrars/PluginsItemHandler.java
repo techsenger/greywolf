@@ -71,7 +71,8 @@ public class PluginsItemHandler extends AbstractGreyWolfHandler<ActionEvent> {
         var config = greyWolf.getConfigManager().getOrCreateConfig(PluginDialogConfig.class,
                 PluginDialogConfig::new);
         var params = new PluginDialogParams(config, (PluginManagerImpl) greyWolf.getPluginManager(),
-                greyWolf.getFileStorageRegistry(), greyWolf.getSettings(), greyWolf.getConfigManager());
+                greyWolf.getFileStorageRegistry(), greyWolf.getSettings(), greyWolf.getConfigManager(),
+                greyWolf.getHostServices());
         var viewModel = new PluginDialogViewModel(params);
         var view = new PluginDialogView(viewModel, greyWolf.getStylesheetRegistry());
         view.initialize();

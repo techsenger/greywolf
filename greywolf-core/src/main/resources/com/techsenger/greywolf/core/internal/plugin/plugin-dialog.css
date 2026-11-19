@@ -28,3 +28,7 @@
     -fx-alignment: CENTER;
     -fx-padding: 0;
 }
+
+.plugin-dialog-link:visited {
+    -fx-text-fill: -color-accent-fg;
+}

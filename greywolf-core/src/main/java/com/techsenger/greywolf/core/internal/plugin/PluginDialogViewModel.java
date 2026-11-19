@@ -56,6 +56,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+import javafx.application.HostServices;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanWrapper;
@@ -148,6 +149,8 @@ public final class PluginDialogViewModel extends AbstractDialogViewModel<PluginD
 
     private final ConfigManager configManager;
 
+    private final HostServices hostServices;
+
     private final ObservableList<ObservablePlugin> modifiablePlugins = FXCollections.observableArrayList();
 
     private final ObservableList<ObservablePlugin> plugins =
@@ -180,6 +183,7 @@ public final class PluginDialogViewModel extends AbstractDialogViewModel<PluginD
         this.pluginManager = params.getPluginManager();
         this.fileStorageRegistry = params.getFileStorageRegistry();
         this.configManager = params.getConfigManager();
+        this.hostServices = params.getHostServices();
     }
 
     @Override
@@ -529,6 +533,10 @@ public final class PluginDialogViewModel extends AbstractDialogViewModel<PluginD
         }
         updateActionButtonsDisabled();
         updateSelectAll();
+    }
+
+    void onOpenUrl(String url) {
+        hostServices.showDocument(url);
     }
 
     ReadOnlyObjectWrapper<@Nullable ObservablePlugin> pluginWrapper() {

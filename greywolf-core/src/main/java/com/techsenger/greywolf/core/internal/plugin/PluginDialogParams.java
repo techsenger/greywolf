@@ -22,6 +22,7 @@ import com.techsenger.shellfx.core.config.ConfigManager;
 import com.techsenger.shellfx.core.dialog.DialogParams;
 import com.techsenger.shellfx.core.window.WindowType;
 import java.util.Objects;
+import javafx.application.HostServices;
 
 /**
  *
@@ -37,13 +38,17 @@ public class PluginDialogParams extends DialogParams {
 
     private final ConfigManager configManager;
 
+    private final HostServices hostServices;
+
     public PluginDialogParams(PluginDialogConfig config, PluginManagerImpl pluginManager,
-            FileStorageRegistry fileStorageRegistry, GreyWolfSettings settings, ConfigManager configManager) {
+            FileStorageRegistry fileStorageRegistry, GreyWolfSettings settings, ConfigManager configManager,
+            HostServices hostServices) {
         super(config, WindowType.TOP_LEVEL, settings);
         this.pluginManager = pluginManager;
         this.fileStorageRegistry = fileStorageRegistry;
         this.settings = settings;
         this.configManager = configManager;
+        this.hostServices = hostServices;
     }
 
     public PluginManagerImpl getPluginManager() {
@@ -58,6 +63,10 @@ public class PluginDialogParams extends DialogParams {
         return configManager;
     }
 
+    public HostServices getHostServices() {
+        return hostServices;
+    }
+
     @Override
     public PluginDialogConfig getConfig() {
         return (PluginDialogConfig) super.getConfig();
@@ -70,5 +79,6 @@ public class PluginDialogParams extends DialogParams {
         Objects.requireNonNull(pluginManager);
         Objects.requireNonNull(fileStorageRegistry);
         Objects.requireNonNull(configManager);
+        Objects.requireNonNull(hostServices);
     }
 }

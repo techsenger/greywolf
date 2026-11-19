@@ -382,6 +382,13 @@ public final class PluginDialogView extends AbstractDialogView<PluginDialogViewM
         rowIndex++;
 
         gridPane.addRow(rowIndex++, homepageLabel, homepageHyperlink);
+        homepageHyperlink.getStyleClass().add("plugin-dialog-link");
+        homepageHyperlink.setOnAction(e -> {
+            var url = homepageHyperlink.getText();
+            if (url != null && !url.isBlank()) {
+                getViewModel().onOpenUrl(url);
+            }
+        });
         homepageLabel.setMinWidth(Label.USE_PREF_SIZE);
         GridPane.setColumnSpan(homepageHyperlink, 3);
         GridPane.setHgrow(homepageHyperlink, Priority.ALWAYS);
